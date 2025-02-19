@@ -1,3 +1,4 @@
+
 const books = [
     {
         title: "React Billionaire",
@@ -45,7 +46,6 @@ const books = [
     },
 ];
 
-
 /* Snack 1 - Filtra e Modifica
 Crea una funzione che somma due numeri.
 Crea un array (longBooks) con i libri che hanno più di 300 pagine;
@@ -60,3 +60,21 @@ longBooksTitles.forEach(title => {
     console.log(title);
 
 });
+
+/* Snack 2 - Il primo libro scontato
+Creare un array (availableBooks) che contiene tutti i libri disponibili.
+Crea un array (discountedBooks) con gli availableBooks, ciascuno con il prezzo scontato del 20% 
+(mantieni lo stesso formato e arrotonda al centesimo)
+Salva in una variabile (fullPricedBook) il primo elemento di discountedBooks che ha un prezzo intero (senza centesimi). */
+
+const availableBooks = books.filter(b => b.available === true)
+console.log(availableBooks);
+const discountedBooks = availableBooks.map(a => {
+    const originalPrice = Number(a.price.replace("€", ""))
+    const discountedPrice = (originalPrice * 0.8).toFixed(2)
+    return { ...a, price: `${discountedPrice}€` }
+})
+console.log(discountedBooks);
+const fullPricedBook = discountedBooks.find(d => Number.isInteger(Number(d.price.replace("€", ""))))
+console.log(fullPricedBook);
+
