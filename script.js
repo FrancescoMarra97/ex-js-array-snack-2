@@ -112,3 +112,21 @@ const agesSum = ages.reduce((acc, ages) => {
 const etaMedia = agesSum / ages.length
 console.log(etaMedia);
 
+/* Usando la l'API https://boolean-spec-frontend.vercel.app/freetestapi/books/{id} usa la combinazione di .map() e Promise.all(), 
+per creare una funzione (getBooks) che a partire da un array di id (ids), ritorna una promise che risolve un array di libri (books).
+Testala con l’array [2, 13, 7, 21, 19] . */
+
+
+async function fetchJson(url) {
+    const res = await fetch(url)
+    const obj = await res.json()
+    return obj
+}
+
+
+async function getBooks(ids) {
+    return await Promise.all(ids.map(id => fetchJson(` https://boolean-spec-frontend.vercel.app/freetestapi/books/${id}`)))
+}
+
+getBooks([2, 13, 7, 21, 19])
+    .then(b => console.log(b))
