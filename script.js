@@ -1,4 +1,3 @@
-
 const books = [
     {
         title: "React Billionaire",
@@ -130,3 +129,17 @@ async function getBooks(ids) {
 
 getBooks([2, 13, 7, 21, 19])
     .then(b => console.log(b))
+
+/* Snack 6 (Bonus) - Ordina i libri
+Crea una variabile booleana (areThereAvailableBooks) per verificare se c’è almeno un libro disponibile.
+Crea un array (booksByPrice) con gli elementi di books ordinati in base al prezzo (crescente).
+Ordina l’array booksByPricein base alla disponibilità (prima quelli disponibili), senza creare un nuovo array. */
+
+const areThereAvailableBooks = books.some(b => b.available === true)
+console.log(areThereAvailableBooks);
+
+const booksByPrice = books.sort((a, b) => Number(a.price.replace("€", "")) - Number(b.price.replace("€", "")))
+console.log(booksByPrice);
+
+booksByPrice.sort((a, b) => b.available - a.available)
+console.log(booksByPrice);
